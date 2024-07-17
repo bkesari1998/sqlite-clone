@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 #include "io.h"
+
+#define TIME_BUFFER_MAX 26
 
 void print_prompt(void) {
 
@@ -20,4 +23,20 @@ void prompt_loop(InputBuffer_t *p_input_buffer) {
                    p_input_buffer->buffer);
         }
     }
+}
+
+void print_startup(void) {
+    time_t timer;
+    char buffer[TIME_BUFFER_MAX];
+    struct tm* p_tm;
+
+    timer = time(NULL);
+    p_tm = localtime(&timer);
+
+    strftime(buffer, TIME_BUFFER_MAX, "%Y-%m-%d %H:%M:%S", p_tm);
+
+    printf("SQLiteClone version 1.0.0 %s\n", buffer);
+    printf("Enter \".help\" for usage hints.\n");
+    printf("Connected to a transient in-memory database.\n");
+    printf("Use \".open FILENAME\" to reopen on a persistent database.\n");
 }

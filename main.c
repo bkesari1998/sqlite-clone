@@ -17,6 +17,9 @@ int main(const int argc, const char *argv[]) {
         perror("Unable to initialize input_buffer");
         exit(HEAP_ERROR);
     }
+    
+    // Print startup message
+    print_startup();
 
     // Prompt user indefinately
     prompt_loop(p_input_buffer);

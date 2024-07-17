@@ -12,3 +12,6 @@ void print_prompt(void);
 
 // Handles user input in an infinite loop
 void prompt_loop(InputBuffer_t *p_input_buffer);
+
+// Prints start up message
+void print_startup(void);
