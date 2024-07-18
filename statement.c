@@ -4,7 +4,7 @@
 #include "io.h"
 
 PrepareResult_t prepare_statement(InputBuffer_t *p_input_buffer,
-                                  StatementType_t *statement) 
+                                  Statement_t *p_statement) 
 {
 
     PrepareResult_t return_val = PREPARE_SUCCESS;
@@ -15,9 +15,9 @@ PrepareResult_t prepare_statement(InputBuffer_t *p_input_buffer,
     char *token = strtok(buffer_copy, " ");
 
     if (strncmp(token, COMMAND_SELECT, MAX_COMMAND_LEN) == 0) {
-        *statement = STATEMENT_SELECT;
+        p_statement->type = STATEMENT_SELECT;
     } else if (strncmp(token, COMMAND_INSERT, MAX_COMMAND_LEN) == 0) {
-        *statement = STATEMENT_INSERT;
+        p_statement->type = STATEMENT_INSERT;
     } else {
         return_val = PREPARE_UNRECOGNIZED_COMMAND;
     }
@@ -25,9 +25,9 @@ PrepareResult_t prepare_statement(InputBuffer_t *p_input_buffer,
     return return_val;
 }
 
-void execute_statement(StatementType_t statement) {
+void execute_statement(Statement_t *p_statement) {
     
-    switch (statement) {
+    switch (p_statement->type) {
     case STATEMENT_INSERT:
          printf("This is where we would do an insert.\n");
          break;

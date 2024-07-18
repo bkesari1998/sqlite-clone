@@ -48,7 +48,7 @@ void prompt_loop(InputBuffer_t *p_input_buffer) {
             continue;
         } 
 
-        StatementType_t statement;
+        Statement_t statement;
         PrepareResult_t rc = prepare_statement(p_input_buffer, &statement);
         switch (rc) {
         case PREPARE_SUCCESS:
@@ -58,6 +58,6 @@ void prompt_loop(InputBuffer_t *p_input_buffer) {
                    p_input_buffer->buffer);
         }
 
-        execute_statement(statement);
+        execute_statement(&statement);
     }
 }
