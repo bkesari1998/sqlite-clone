@@ -23,9 +23,6 @@ int main(const int argc, const char *argv[]) {
 
     // Prompt user indefinately
     prompt_loop(p_input_buffer);
-    
-    // Clean up input buffer
-    close_input_buffer(p_input_buffer);
 
     return 0;
 }

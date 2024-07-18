@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra 
-OBJS = main.o input_buffer.o io.o
+OBJS = main.o input_buffer.o io.o meta_command.o
 EXECS = sqlite_clone
 INC = ./include
 
@@ -17,6 +17,9 @@ input_buffer.o: input_buffer.c $(INC)
 
 io.o: io.c $(INC)
 	$(CC) $(CFLAGS) -I $(INC) -c io.c -o io.o
+
+meta_command.o: meta_command.c $(INC)
+	$(CC) $(CFLAGS) -I $(INC) -c meta_command.c -o meta_command.o
 
 clean:
 	rm $(OBJS) $(EXECS) 
