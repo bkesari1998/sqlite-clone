@@ -2,10 +2,6 @@
 
 #include "input_buffer.h"
 
-// Command macros
-#define COMMAND_EXIT ".exit"
-#define COMMAND_HELP ".help"
-
 // Buffer lengths
 #define MAX_COMMAND_LEN 50
 
