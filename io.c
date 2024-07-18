@@ -4,6 +4,7 @@
 #include <time.h>
 #include "io.h"
 #include "meta_command.h"
+#include "statement.h"
 
 #define TIME_BUFFER_MAX 26
 
@@ -47,6 +48,16 @@ void prompt_loop(InputBuffer_t *p_input_buffer) {
             continue;
         } 
 
+        StatementType_t statement;
+        PrepareResult_t rc = prepare_statement(p_input_buffer, &statement);
+        switch (rc) {
+        case PREPARE_SUCCESS:
+            break;
+        case PREPARE_UNRECOGNIZED_COMMAND:
+            printf("Unrecognized keyword at start of \"%s\".\n",
+                   p_input_buffer->buffer);
+        }
 
+        execute_statement(statement);
     }
 }
